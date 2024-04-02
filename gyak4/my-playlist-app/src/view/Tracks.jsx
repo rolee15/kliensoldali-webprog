@@ -2,7 +2,7 @@ function Tracks() {
     let exampleTracks = [];
   return (
     <>
-      
+
       <div className="ui container">
         <a href="#" className="ui right floated green button" id="newModal">
           <i className="plus icon"></i>

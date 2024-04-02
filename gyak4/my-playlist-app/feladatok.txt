@@ -1,0 +1,7 @@
+1. Hozzunk létre egy Tracks komponenst a Playlists-hez hasonlóan!
+Az App komponensben egy shownPage változóban tároljuk első körben, hogy mely komponens jelenjen meg a menü alatt!
+    a, statikus formában a tracks.html tartalmát
+    b, a track.js tartalmát listázzuk ki
+2. Valósítsuk meg a navigációs részt a react-router-dom segítségével!
+3. A Playlists komponenst bontsuk három további alrészre: PlaylistList, Playlist, TrackDetails komponensekre!
+4. Működjön megfelelően a lista és a szám kiválasztása!
