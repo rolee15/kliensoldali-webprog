@@ -24,7 +24,7 @@ const graphiLogicSlice = createSlice({
       );
     },
     toggleCell: (state, { payload: { x, y } }) => {
-      state.table[y][x] = (state.table[y][x] + 1) % 3;
+      state.table[x][y] = (state.table[x][y] + 1) % 3;
     },
   },
 });
@@ -34,14 +34,14 @@ export default graphiLogicSlice;
 
 export const selectTable = (state) => {
   const { solution, table } = state;
-  const leftNumbers = solution.map((row) => {
+  const leftNumbers = solution.map((row) =>
     row
       .map((b) => (b ? "#" : " "))
       .join("")
       .trim()
       .split(" ")
-      .map((s) => s.length);
-  });
+      .map((s) => s.length)
+  );
   const upperNumbers = solution[0]
     ? solution[0].map((_, i) =>
         solution

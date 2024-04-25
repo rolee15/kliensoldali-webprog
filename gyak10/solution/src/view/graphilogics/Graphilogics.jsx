@@ -62,7 +62,7 @@ function GraphiLogics() {
                 key={colIndex}
                 className={getClassName(value)}
                 onClick={() =>
-                  dispatch(toggleCell({ x: colIndex, y: rowIndex }))
+                  dispatch(toggleCell({ x: rowIndex, y: colIndex }))
                 }
               ></td>
             ))}
