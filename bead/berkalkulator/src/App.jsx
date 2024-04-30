@@ -2,10 +2,9 @@ import HouseholdSalaryCalculator from "./components/HouseholdSalaryCalculator";
 
 function App() {
   return (
-    <div>
-      <h1>Bérkalkulátor alkalmazás</h1>
+    <div className="container mx-auto my-8">
       <HouseholdSalaryCalculator />
-    </div>
+      </div>
   );
 }
 
