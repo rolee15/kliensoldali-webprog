@@ -9,7 +9,7 @@ const HouseholdSalaryCalculator = () => {
         <FamilyMemberTabs />
       </header>
       <main className="flex space-x-2">
-        <SalaryCalculator name="Bendi" />
+        <SalaryCalculator />
         <HouseholdSummary />
       </main>
     </div>

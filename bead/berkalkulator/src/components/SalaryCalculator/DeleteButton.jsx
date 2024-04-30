@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { deleteFamilyMember } from "@/state/salaryCalculatorSlice";
+import { selectFamilyMember } from "@/state/selectors";
+import { useDispatch, useSelector } from "react-redux";
 
 const DeleteButton = () => {
+  const dispatch = useDispatch();
+  const { name } = useSelector(selectFamilyMember);
+
   return (
-    <Button variant="ghost">
+    <Button variant="ghost" onClick={() => dispatch(deleteFamilyMember({ name }))}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
