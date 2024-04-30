@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const TaxCredits = () => {
   const dispatch = useDispatch();
   const { member } = useSelector(selectFamilyMember);
-  const { under25, newlyWed, disability, children, childrenEligible } = member.taxCredits;
+  const { under25, newlyWed, disability, childrenEligible } = member.taxCredits;
 
   return (
     <div className="grid pt-4">

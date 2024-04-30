@@ -8,6 +8,12 @@ export const selectFamilyMemberNames = (state) => {
   };
 };
 
+export const selectSalaries = (state) => {
+  const salaries = Object.entries(state.familyMembers).map(([key, value]) => ({ name: key, netSalary: value.netSalary }))
+
+  return salaries;
+};
+
 export const selectFamilyMember = (state) => {
   const { familyMembers, selectedFamilyMember } = state;
 
