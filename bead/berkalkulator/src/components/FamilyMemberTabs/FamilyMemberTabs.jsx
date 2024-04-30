@@ -10,7 +10,7 @@ const FamilyMemberTabs = () => {
   return (
     <div className="flex space-x-4">
       <div className="flex space-x-1 p-2 rounded-md">
-        {names.map((name, idx) => (
+        {names.map((name) => (
           <Button key={name} onClick={() => dispatch(selectedFamilyMember({ name: name }))}>
             {name}
           </Button>

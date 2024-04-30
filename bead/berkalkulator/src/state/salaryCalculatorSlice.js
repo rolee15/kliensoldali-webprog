@@ -4,6 +4,7 @@ const initialState = {
   familyMembers: {
     Bendi: {
       grossSalary: 250000,
+      netSalary: 166250,
       taxCredits: {
         under25: false,
         newlyWed: true,
@@ -14,6 +15,7 @@ const initialState = {
     },
     Bogdán: {
       grossSalary: 350000,
+      netSalary: 232750,
       taxCredits: {
         under25: true,
         newlyWed: false,
@@ -35,7 +37,6 @@ const salaryCalculatorSlice = createSlice({
         familyMembers: {
           ...state.familyMembers,
           "": {
-            name: "",
             grossSalary: 0,
             taxCredits: {
               under25: false,
@@ -50,25 +51,17 @@ const salaryCalculatorSlice = createSlice({
       };
     },
     updateFamilyMember: (state, { payload }) => {
-      const {
-        grossSalary,
-        taxCredits: { under25, newlyWed, disability, children, childrenEligible },
-      } = payload;
-      console.log(
-        "update: ",
-        grossSalary,
-        under25,
-        newlyWed,
-        disability,
-        children,
-        childrenEligible
-      );
+      const { grossSalary, taxCredits } = payload;
+      const { under25, newlyWed, disability, children, childrenEligible } = taxCredits;
+      const netSalary = calculateNetSalary(grossSalary, taxCredits);
 
       return {
         ...state,
         familyMembers: {
+          ...state.familyMembers,
           [state.selectedFamilyMember]: {
             grossSalary: grossSalary,
+            netSalary: netSalary,
             taxCredits: {
               under25: under25,
               newlyWed: newlyWed,
@@ -86,7 +79,7 @@ const salaryCalculatorSlice = createSlice({
 
       return {
         familyMembers: { ...rest, [name]: member },
-        selectedFamilyMember: selected,
+        selectedFamilyMember: name,
       };
     },
     deleteFamilyMember: (state, { payload: { name } }) => {
@@ -108,11 +101,10 @@ const salaryCalculatorSlice = createSlice({
   },
 });
 
-export const {
-  addFamilyMember,
-  updateFamilyMember,
-  updateFamilyMemberName,
-  deleteFamilyMember,
-  selectedFamilyMember,
-} = salaryCalculatorSlice.actions;
+const calculateNetSalary = (grossSalary, taxCredits) => {
+  return grossSalary * 0.665;
+};
+
+export const { addFamilyMember, updateFamilyMember, updateFamilyMemberName, deleteFamilyMember, selectedFamilyMember } =
+  salaryCalculatorSlice.actions;
 export default salaryCalculatorSlice;

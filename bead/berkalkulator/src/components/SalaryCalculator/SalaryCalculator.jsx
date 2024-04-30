@@ -3,10 +3,10 @@ import DeleteButton from "./DeleteButton";
 import InputWithLabel from "./InputWithLabel";
 import SliderModifier from "./SliderModifier";
 import Summary from "./Summary";
-import ToggleWithLabel from "./ToggleWithLabel";
+import TaxCredits from "./TaxCredits";
 import { Card } from "@/components/ui/card";
 import { selectFamilyMember, selectFamilyMemberNames } from "@/state/selectors";
-import { updateFamilyMember } from "@/state/salaryCalculatorSlice";
+import { updateFamilyMember, updateFamilyMemberName } from "@/state/salaryCalculatorSlice";
 
 const SalaryCalculator = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const SalaryCalculator = () => {
             placeholderText={name}
             helpText="Add meg a családtag nevét!"
             value={name}
+            onChangeHandler={(e) => dispatch(updateFamilyMemberName({ name: e.target.value }))}
           />
           <InputWithLabel
             id="gross-salary"
@@ -31,17 +32,12 @@ const SalaryCalculator = () => {
             placeholderText="250.000 Ft"
             helpText="Add meg a bruttó béredet!"
             value={member.grossSalary}
+            onChangeHandler={(e) => dispatch(updateFamilyMember({ ...member, grossSalary: e.target.value }))}
           />
 
-          <SliderModifier></SliderModifier>
+          <SliderModifier />
 
-          <div className="grid pt-4">
-            <h2 className="text-l font-bold uppercase">Kedvezmények</h2>
-            <ToggleWithLabel id="tax-credit-under-25" labelText="25 év alattiak SZJA mentessége" />
-            <ToggleWithLabel id="tax-credit-newly-wed" labelText="Friss házasok kedvezménye" />
-            <ToggleWithLabel id="tax-credit-disabilities" labelText="Személyi adókedvezmény" />
-            <ToggleWithLabel id="tax-credit-children" labelText="Családi kedvezmény" />
-          </div>
+          <TaxCredits />
         </div>
 
         {names.length === 0 ? (
