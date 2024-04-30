@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 
 const salaries = [
   {
@@ -13,15 +14,15 @@ const salaries = [
 
 const HouseholdSummary = () => {
   return (
-    <div className="flex flex-col place-content-center">
+    <Card className="grid w-1/2 place-content-center">
 
-        <h1 className="mx-auto">Háztartás összesített jövedelme</h1>
+        <h1 className="mx-auto p-4 text-xl font-semibold">Háztartás összesített jövedelme</h1>
 
-        <Table>
+        <Table className="w-96">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-1/2">Családtag</TableHead>
-              <TableHead>Nettó bér</TableHead>
+              <TableHead className="w-1/2 font-bold text-inherit">Családtag</TableHead>
+              <TableHead className="w-1/2 font-bold text-inherit">Nettó bér</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -40,7 +41,7 @@ const HouseholdSummary = () => {
             </TableRow>
           </TableFooter>
         </Table>
-    </div>
+    </Card>
   );
 };
 
