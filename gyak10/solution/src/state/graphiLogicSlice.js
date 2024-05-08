@@ -33,7 +33,7 @@ export const { start, toggleCell } = graphiLogicSlice.actions;
 export default graphiLogicSlice;
 
 export const selectTable = (state) => {
-  const { solution, table } = state;
+  const { solution, table } = state.graphilogic;
   const leftNumbers = solution.map((row) =>
     row
       .map((b) => (b ? "#" : " "))
