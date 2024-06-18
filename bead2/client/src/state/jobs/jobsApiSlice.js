@@ -6,17 +6,23 @@ export const jobsApiSlice = emptyApiSlice.injectEndpoints({
     getAllJobs: build.query({
       query: () => "jobs",
     }),
+    getAllJobsWithLimitAndSkip: build.query({
+      query: ({ limit, skip }) => `jobs?$limit=${limit}&$skip=${skip}`,
+    }),
     getJobById: build.query({
       query: (id) => `jobs/${id}`,
     }),
     getFilteredJobs: build.query({
       query: (filters) => {
         const queryString = Object.entries(filters)
-          .filter(([_, value]) => value !== null)
+          .filter(([key, value]) => value !== null)
           .map(([key, value]) => `${key}=${value}`)
           .join("&");
-        return `/?${queryString}`;
+        return `/jobs?${queryString}`;
       },
+    }),
+    getJobsByUserId: build.query({
+      query: (userId) => `jobs?userId=${userId}`,
     }),
     postJob: build.mutation({
       query: (body) => ({
@@ -49,8 +55,10 @@ export const jobsApiSlice = emptyApiSlice.injectEndpoints({
 
 export const {
   useGetAllJobsQuery,
+  useGetAllJobsWithLimitAndSkipQuery,
   useGetJobByIdQuery,
   useGetFilteredJobsQuery,
+  useGetJobsByUserIdQuery,
   usePostJobMutation,
   usePatchJobMutation,
   useDeleteJobMutation,

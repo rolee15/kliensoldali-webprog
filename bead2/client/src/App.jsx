@@ -6,7 +6,8 @@ import { Register } from "./view/pages/Register";
 import { RequireAuth } from "./view/auth/RequireAuth";
 import { JobListings } from "./view/pages/JobListings";
 import { Profile } from "./view/pages/Profile";
-import { JobListing } from "./view/pages/JobListing";
+import { JobDetails } from "./view/pages/JobDetails";
+import { NewJobListing } from "./view/pages/NewJobListing";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<JobListings />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route
             path="/profile"
             element={
@@ -24,7 +26,22 @@ function App() {
               </RequireAuth>
             }
           />
-          <Route path="/jobs/:id" element={<JobListing />} />
+          <Route
+            path="/jobs/:id"
+            element={
+              <RequireAuth>
+                <JobDetails />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/create-job"
+            element={
+              <RequireAuth>
+                <NewJobListing />
+              </RequireAuth>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

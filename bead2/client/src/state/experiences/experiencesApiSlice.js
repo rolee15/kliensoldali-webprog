@@ -5,6 +5,7 @@ export const experiencesApiSlice = emptyApiSlice.injectEndpoints({
   endpoints: (build) => ({
     getExperiences: build.query({
       query: () => "experiences",
+      providesTags: (result) => result?.data?.map(({ id }) => ({ type: "Experiences", id })) || ["Experiences"],
     }),
     postExperience: build.mutation({
       query: (data) => ({
@@ -19,18 +20,21 @@ export const experiencesApiSlice = emptyApiSlice.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: (result, error, id) => [{ type: "Experiences", id }].concat(result ? [] : ["Experiences"]),
     }),
     deleteExperience: build.mutation({
       query: (id) => ({
         url: `experiences/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: (result, error, id) => [{ type: "Experiences", id }].concat(result ? [] : ["Experiences"]),
     }),
     deleteAllExperiences: build.mutation({
       query: () => ({
         url: `experiences`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Experiences"],
     }),
   }),
 });
